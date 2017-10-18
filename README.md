@@ -26,12 +26,12 @@ function add() {
 - makes it possible for a function to have "private" variables, any function where youre using a variable from outside the scope, is actually a closure.
 
 ### Arrow functions =>
-	- are anonymous, they do not need names.
-	- return implicitly, no need for an explicit return keyword.
-	- are more concise than non arrow functions
-	- do not rebind the value of ‘this’ when you use an arrow function inside of another function (lexically scoped).
-	- useful as callbacks + have more expressive closure syntax
-	- readable inside of array prototype methods.
+* are anonymous, they do not need names.
+* return implicitly, no need for an explicit return keyword.
+* are more concise than non arrow functions
+* do not rebind the value of ‘this’ when you use an arrow function inside of another function (lexically scoped).
+* useful as callbacks + have more expressive closure syntax
+* readable inside of array prototype methods.
 
 #### How to convert from a regular function to an arrow function -
 ```js
@@ -56,9 +56,9 @@ const fullNames = names.map(name => {
 });
 ```
 
-####How to return an object in an arrow function - 
+#### How to return an object in an arrow function - 
+If you want to return an object literal and not the actual function block, that will contain some logic or whatever so like, format it like => ({my obj}) instead of => {exp < 0 ? 1 : 0} 
 ```js
-//you want to return an object literal and not the actual function block that will contain some logic or whatever so like, ({..my obj..})
 const race = '100m Dash';
 const winners = ['Alisa', 'Patricia', 'Tkaczyk'];
 const win = winners.map(winner, i) => ({name:winner, race:race, place: i});
@@ -95,7 +95,7 @@ box.addEventListener('click'), function() {
 }}; 
 ```
 
-####WHEN NOT to use an arrow function?
+#### WHEN NOT to use an arrow function?
 - When you really need 'this'
 - When you need a method to bind to an object (because it will look a level outside the object)
 - When you need to add a prototype method (for classes)
@@ -109,7 +109,7 @@ sayHello('Alisa')
 ```
 
 
-Default function arguments
+#### Default function arguments
 When you pass in a bunch of args as expected but if they are undefined the function has to handle them
 You can actually handle the function arguments in the function declaration and assign defaults in the function declaration.
 ```js
