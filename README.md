@@ -1,9 +1,11 @@
 # es6-notes
 
 ## Arrow Functions in ES6 
- An arrow function is a LAMBDA expression! Seen in CoffeeScript, Python, C#, VB... (ubiquitous in functional programming languages & languages that apply the functional programming paradigm) 
+ An arrow function is a lambda expression! Seen in CoffeeScript, Python, C#, VB... (ubiquitous in functional programming languages & languages that apply the functional programming paradigm) 
 
 ### What is a programming paradigm/the functional programming paradigm? 
+a concept or way of programming, it's support is often determined by the execution model of the language. Most (useful) languages support multiple paradigms. The different paradigms can be determined by the way the language manipulates state, its control structures, procedure calls, how it uses classes or prototypes.
+Functional programming paradigm is based on lambda calculus which is a formal system for expressing computations. Concepts from this style are being supported in more languages. FP is declarative and uses expressions more than statements(that have nested expressions).
 
 ### What is a lambda?  
 Put simply: an anonymous function that that can be passed around as an object to higher order functions! 
