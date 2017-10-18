@@ -1,35 +1,10 @@
 # es6-notes
 
 ## Arrow Functions in ES6 
- An arrow function is a lambda expression! Seen in CoffeeScript, Python, C#, VB... (ubiquitous in functional programming languages & languages that apply the functional programming paradigm) 
-
-### What is a programming paradigm/the functional programming paradigm? 
-a concept or way of programming, it's support is often determined by the execution model of the language. Most (useful) languages support multiple paradigms. The different paradigms can be determined by the way the language manipulates state, its control structures, procedure calls, how it uses classes or prototypes.
-Functional programming paradigm is based on lambda calculus which is a formal system for expressing computations. Concepts from this style are being supported in more languages. FP is declarative and uses expressions more than statements(that have nested expressions).
-
-### What is a lambda?  
-Put simply: an anonymous function that that can be passed around as an object to higher order functions! 
-A higher order function is just a function that will take in another function as an argument, or return a function as output. 
-
-### What is a closure?
-A closure is a function that can maintain its own scope.
-Put simply in an example: a nested function that can access the outer scope even after the outer function has returned.
-Why are closures a thing? The counter dilemma 
-- if you need a counter to be accessible by all functions, make a global variable!
-- oh no! people are accessing my counter variable outside of the add() function, because it's global!
-```js
-function add() {
-    var counter = 0;
-    counter += 1;
-}
-```
-- a nested function will solve this!
-- see codepen for solution.
-- makes it possible for a function to have "private" variables, any function where youre using a variable from outside the scope, is actually a closure.
 
 ### Arrow functions =>
 * are anonymous, they do not need names.
-* return implicitly, no need for an explicit return keyword.
+* no need for an explicit return keyword unless you are returning a function block (will return implicitly).
 * are more concise than non arrow functions
 * do not rebind the value of ‘this’ when you use an arrow function inside of another function (lexically scoped).
 * useful as callbacks + have more expressive closure syntax
@@ -40,20 +15,20 @@ function add() {
 names = ["Alisa", "Amanda", "Alex"];
 
 //function before any modification
-const fullNames = names.map(function(name) { return `${name} boss`});
+const fullNames = names.map(function(name) { return `${name} is cool`});
 
 //no need for the "function" in the definition, added the fat arrow after the parameter and before the block.
-const fullNames = names.map((name) => { return `${name} boss`});
+const fullNames = names.map((name) => { return `${name} is cool`});
 
 // only need parenthesis around the argument if you use more than one, if no arguments indicate empty () declaration
-const fullNames = names.map(name => { return `${name} boss`});
+const fullNames = names.map(name => { return `${name} is cool`});
 
 //removed the explicit return, arrow functions use implicit returns
-const fullNames = names.map(name => `${name} boss`);
+const fullNames = names.map(name => `${name} is cool`);
 
 //if you want to do more than one thing you'll need to use the function block {}
 const fullNames = names.map(name => { 
-	`${name} boss`; 
+	`${name} is cool`; 
 	...etc... 
 });
 ```
@@ -123,8 +98,28 @@ const totalBill = calculateBill(100, undefined, 0.25);
 ```
 
 
-A little ES6 assignment trick
-```js
-[first, second] = [value1, value2];
-```
+ An arrow function is a lambda expression! Seen in CoffeeScript, Python, C#, VB... (ubiquitous in functional programming languages & languages that apply the functional programming paradigm) 
 
+### What is a programming paradigm/the functional programming paradigm? 
+a concept or way of programming, it's support is often determined by the execution model of the language. Languages support multiple paradigms (many to many). The different paradigms can be determined by the way the language manipulates state, its control structures, procedure calls, how it uses classes or prototypes.
+Functional programming paradigm is based on lambda calculus which is a formal system for expressing computations. Concepts from this style are being supported in more languages. FP is declarative and uses expressions more than statements (that have nested expressions).
+
+### What is a lambda?  
+Put simply: an anonymous function that that can be passed around as an object to higher order functions! 
+A higher order function is just a function that will take in another function as an argument, or return a function as output. 
+
+### What is a closure?
+A closure is a function that can maintain its own scope.
+Put simply in an example: a nested function that can access the outer scope even after the outer function has returned.
+Why are closures a thing? The counter dilemma 
+- if you need a counter to be accessible by all functions, make a global variable!
+- oh no! people are accessing my counter variable outside of the add() function, because it's global!
+```js
+function add() {
+    var counter = 0;
+    counter += 1;
+}
+```
+- a nested function will solve this!
+- see codepen for solution.
+- makes it possible for a function to have "private" variables, any function where youre using a variable from outside the scope, is actually a closure.
