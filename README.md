@@ -4,7 +4,7 @@
 
 ### Arrow functions =>
 * are anonymous, they do not need names.
-* no need for an explicit return keyword unless you are returning a function block (will return implicitly).
+* no need for an explicit return keyword unless you are returning a function block, can return implicitly.
 * are more concise than non arrow functions
 * do not rebind the value of ‘this’ when you use an arrow function inside of another function (lexically scoped).
 * useful as callbacks + have more expressive closure syntax
