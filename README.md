@@ -1,34 +1,52 @@
 # es6-notes
 
-## Looping and Array info
-Review of the ES6 Course on Looping, Rest & Spread.
+## Iterables & Looping / An Array of Array Improvements
+###Review of the ES6 Course
 
-Looping:
+###What's an Iterable?
+Anything that can be looped over! An array, list, map, string, set, generator. 
+Array-like objects have a length, and can be indexed but do not have array methods (push, forEach, indexOf)
 
-What's an Iterable?
-Anything that can be looped over!  An array, list, map, string, set, generator.
 
-The regular for loop  // for (let i = 0; i < arr.length; i++)
+####The regular for loop  
+```js
+for (let i = 0; i < arr.length; i++)
+```
 
-The forEach loop // arr.forEach((item)  => { console.log(item)};
-Downside of the .forEach is that we cannot abort (break) or skip (continue) any element in the array. //arr.forEach((item)  => { console.log(item) if(item === 'tree') { break; }};
+####The forEach loop
+```js
+ arr.forEach((item)  => { console.log(item)};
+ ```
 
-The for in loop  // for(const cut in cuts) { console.log(cut); } will display index,  so really for in is for(const index in cuts) { console.log(cuts[index]) } you'd need to access your arr[index] to actually get the value of the arr at that pos.
+Downside of the .forEach array prototype method is that we cannot abort (break) or skip (continue) any element in the array. 
+```js
+arr.forEach((item)  => { console.log(item) if(item === 'tree') { break; }};
+```
+
+####The for in loop 
+```js for(const cut in cuts) { console.log(cut); }  ```
+ will display index,  so really for in is   ```js for(const index in cuts) { console.log(cuts[index]) }``` you'd need to access your arr[index] to actually get the value of the arr at that pos.
 So array has method on the prototype (like .forEach, .map, .filter), but you can create a method and add it to the prototype, like .shuffle.
-would look like, Array.prototype.shuffle () = function () { ..shuffle..}; 
-The for in loop would iterate over all the indicies of the array AS WELL as the new prototype, property or method or anything, as if it were appended to the end of the array.
-so it will show up.
-Demo on https://mootools.net/ console
+would look like, 
+```js Array.prototype.shuffle () = function () { ..shuffle..};``` 
+The for in loop would iterate over all the indicies of the array AS WELL as the new prototype, property or method or anything, as if it were appended to the end of the array. so it will show up. A lot of libraries modifiy the array prototype. Demo on https://mootools.net/ console
+```js
 var names = ["me", "you"];
 for (name in names) {console.log(names[name])}; //shows each index in the array, including the name of the new method/prototypes
 for (name in names) {console.log(name)};  //shows what each index is mapped to, including the function definition for the named method/prototypes.
+```
 
+####The for of loop
+for any type of data except an object. Best of all the other loops.
+ ```js for(const cut of cuts) { console.log(cut); } ``` shows the actual value in the array, not the index. break and continue work.
 
-The for of loop, for any type of data except an object. Best of all the other loops.
- // for(const cut of cuts) { console.log(cut); } shows the actual value in the array, not the index. break and continue work.
- //arr.forEach((item)  => { if(item === 'tree') { break; } console.log(item) }; //break will cancel the entire loop, continue will skip that specific iteration.
-
-.entries… see lesson 22.
+We can use desctructuring, and the .entries array method to create an ArrayIterator object, which will allow us to see the index and element we are looping over.
+```js
+for (const [i, cut] of cuts.entries()) {
+	console.log(`${cuts} is the ${i} item);
+}
+```
+for more on .entries() see lesson 23.
 
 
 
@@ -48,25 +66,42 @@ The plain object is not an iterable!
 for const prop of apple.entries())
 
 
-Array methods, 
-Array.from() takes content that is "similar to an array" array-ish like has a length and converts it.
+##Array methods
+####Array.from() 
+takes content that is "similar to an array" array-ish like has a length and converts it.
+```js 
 const trueArray = Array.from(arrayIsh);
-it can take in another argument that is a map function and can manipulate your content
+```
+Array.from take in a second argument that is a map function and can manipulate your content
+```js
 const trueArray = Array.from(arrayIsh, element => {console.log(element); return element.textContent});
+```
+A really good use case for Array.from() is if youre using the arguments object, but you want to run an array method like .filter, .map or .reduce, you have to convert it to a true array.
 
-a really good example of this is if youre using the arguments object, but you want to run an array method like map or reduce, you have to convert it to a true array.
+####Array.of() 
+Pass it as many arguments as you want and it will convert the arguments to an array.
+```js
+const newArray = Array.of(1,2,3,4);
+console.log(newArray);
+//logs [1, 2, 3, 4]
+```
 
-Array.of() pass it as many arguments as you want and it will convert the arguments to an array.
-
-Array.find() for finding the actual thing inside the array
+####Array.find() 
+For finding the actual thing inside the array
 say you have an array of objects, posts and you want a specific one
-const post = posts.find(post => console.log(post.code); if(post.code ==="mycode" {return true;} return false;}
+```js
+const post = posts.find(post => if(post.code ==="mycode" { return true; } return false;}
+
 const post = posts.find(post => post.code ==="mycode" }
+```
 
-Array.findIndex() does the same thing but returns the index where the statement is true.
+####Array.findIndex() 
+Does the exact same thing as Array.find() but returns the _index_ where the statement is true.
 
-arr.some(function) will return true if the function returns true at least once
-arr.every(function) will return true if the function returns true everytime.
+####arr.some(function() {...}); 
+will return true if the function returns true at least once
+####arr.every(function() {...}); 
+will return true if the function returns true everytime.
 
 
 
