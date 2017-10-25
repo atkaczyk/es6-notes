@@ -5,7 +5,8 @@
 
 ### What's an Iterable?
 Anything that can be looped over! An array, list, map, string, set, generator. 
-Array-like objects have a length, and can be indexed but do not have array methods (push, forEach, indexOf)
+Array-like objects have a length, and can be indexed but do not have array methods (push, forEach, indexOf).
+The plain object is not an iterable, and it's not array like.
 
 
 #### The regular for loop  
@@ -25,11 +26,11 @@ arr.forEach((item)  => { console.log(item) if(item === 'tree') { break; }};
 
 #### The for in loop 
 ```js
-for(const cut in cuts) { console.log(cut); }  
+for(const item in arr) { console.log(item); }  
 ```
  will display index,  so really for in is   
 ```js
-  for(const index in cuts) { console.log(cuts[index]) }
+  for(const index in arr) { console.log(arr[index]) }
   ```
 you'd need to access your arr[index] to actually get the value of the arr at that pos.
 So array has method on the prototype (like .forEach, .map, .filter), but you can create a method and add it to the prototype, like .shuffle.
@@ -46,34 +47,31 @@ for (name in names) {console.log(name)};  //shows what each index is mapped to, 
 #### The for of loop
 for any type of data except an object. Best of all the other loops.
  ```js 
- for(const cut of cuts) { console.log(cut); } 
+ for(const item of arr) { console.log(item); } 
 ```
  shows the actual value in the array, not the index. break and continue work.
 
 We can use desctructuring, and the .entries array method to create an ArrayIterator object, which will allow us to see the index and element we are looping over.
 ```js
-for (const [i, cut] of cuts.entries()) {
-	console.log(`${cuts} is the ${i} item);
+for (const [i, item] of arr.entries()) {
+	console.log(`${arr} is the ${i} item);
 }
 ```
 for more on .entries() see lesson 23.
 
 
-
-the arguments keyword  - if an array is not expecting any arguments, but an arbitrary amount of arguments that are stored in the arguments object inside of the function.
+#### The arguments keyword
+If an array is not expecting any arguments, but an arbitrary amount of arguments that are stored in the arguments object inside of the function.
 The for of loop, does not need to know the size of number of indicies in this arguments object to put it to good use. See codepen example.
 Dont need to convert to a true array. Don't forget to declare your const/let/var in your for loop otherwise you'll be over writing it every single time.
 
-Looping over a string - for char of string {console.log(char)
-
-Looping over DOM collections (or nodelists or html collections) without having to convert to true array. They're being changed so that you have .for each and .map and all the array methods that we're used to.
-This is helpful if you want to add an event listener or display all of the elements on the page. When you store some document.querySelectorAll('p') say for the  tag as an example, this will be like a NodeList and contain array methods.
+#### Looping over DOM collections
+ (or nodelists or html collections) without having to convert to true array. They're being changed so that you have `.forEach` and `.map` and all the array methods that we're used to.
+This is helpful if you want to add an event listener or display all of the elements on the page. When you store some `document.querySelectorAll('p')` say for the  tag as an example, this will be like a NodeList and contain array methods.
 Can show example in console of any page.
-const ps = document.querySelectorAll('p');
-for (const par of ps) {console.log(par)}
+`const ps = document.querySelectorAll('p');
+for (const par of ps) {console.log(par)}`
 
-The plain object is not an iterable!
-for const prop of apple.entries())
 
 
 ## Array methods
