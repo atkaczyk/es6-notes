@@ -1,19 +1,19 @@
 # es6-notes
 
 ## Iterables & Looping / An Array of Array Improvements
-###Review of the ES6 Course
+### Review of the ES6 Course
 
-###What's an Iterable?
+### What's an Iterable?
 Anything that can be looped over! An array, list, map, string, set, generator. 
 Array-like objects have a length, and can be indexed but do not have array methods (push, forEach, indexOf)
 
 
-####The regular for loop  
+#### The regular for loop  
 ```js
 for (let i = 0; i < arr.length; i++)
 ```
 
-####The forEach loop
+#### The forEach loop
 ```js
  arr.forEach((item)  => { console.log(item)};
  ```
@@ -23,7 +23,7 @@ Downside of the .forEach array prototype method is that we cannot abort (break) 
 arr.forEach((item)  => { console.log(item) if(item === 'tree') { break; }};
 ```
 
-####The for in loop 
+#### The for in loop 
 ```js for(const cut in cuts) { console.log(cut); }  ```
  will display index,  so really for in is   ```js for(const index in cuts) { console.log(cuts[index]) }``` you'd need to access your arr[index] to actually get the value of the arr at that pos.
 So array has method on the prototype (like .forEach, .map, .filter), but you can create a method and add it to the prototype, like .shuffle.
@@ -36,7 +36,7 @@ for (name in names) {console.log(names[name])}; //shows each index in the array,
 for (name in names) {console.log(name)};  //shows what each index is mapped to, including the function definition for the named method/prototypes.
 ```
 
-####The for of loop
+#### The for of loop
 for any type of data except an object. Best of all the other loops.
  ```js for(const cut of cuts) { console.log(cut); } ``` shows the actual value in the array, not the index. break and continue work.
 
@@ -66,8 +66,8 @@ The plain object is not an iterable!
 for const prop of apple.entries())
 
 
-##Array methods
-####Array.from() 
+## Array methods
+#### Array.from() 
 takes content that is "similar to an array" array-ish like has a length and converts it.
 ```js 
 const trueArray = Array.from(arrayIsh);
@@ -78,7 +78,7 @@ const trueArray = Array.from(arrayIsh, element => {console.log(element); return 
 ```
 A really good use case for Array.from() is if youre using the arguments object, but you want to run an array method like .filter, .map or .reduce, you have to convert it to a true array.
 
-####Array.of() 
+#### Array.of() 
 Pass it as many arguments as you want and it will convert the arguments to an array.
 ```js
 const newArray = Array.of(1,2,3,4);
@@ -86,7 +86,7 @@ console.log(newArray);
 //logs [1, 2, 3, 4]
 ```
 
-####Array.find() 
+#### Array.find() 
 For finding the actual thing inside the array
 say you have an array of objects, posts and you want a specific one
 ```js
@@ -95,12 +95,12 @@ const post = posts.find(post => if(post.code ==="mycode" { return true; } return
 const post = posts.find(post => post.code ==="mycode" }
 ```
 
-####Array.findIndex() 
+#### Array.findIndex() 
 Does the exact same thing as Array.find() but returns the _index_ where the statement is true.
 
-####arr.some(function() {...}); 
+#### arr.some(function() {...}); 
 will return true if the function returns true at least once
-####arr.every(function() {...}); 
+#### arr.every(function() {...}); 
 will return true if the function returns true everytime.
 
 
@@ -118,7 +118,7 @@ will return true if the function returns true everytime.
 * useful as callbacks + have more expressive closure syntax
 * readable inside of array prototype methods.
 
-#### How to convert from a regular function to an arrow function -
+####  How to convert from a regular function to an arrow function -
 ```js
 names = ["Alisa", "Amanda", "Alex"];
 
