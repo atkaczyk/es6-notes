@@ -1,5 +1,78 @@
 # es6-notes
 
+## Looping and Array info
+Review of the ES6 Course on Looping, Rest & Spread.
+
+Looping:
+
+What's an Iterable?
+Anything that can be looped over!  An array, list, map, string, set, generator.
+
+The regular for loop  // for (let i = 0; i < arr.length; i++)
+
+The forEach loop // arr.forEach((item)  => { console.log(item)};
+Downside of the .forEach is that we cannot abort (break) or skip (continue) any element in the array. //arr.forEach((item)  => { console.log(item) if(item === 'tree') { break; }};
+
+The for in loop  // for(const cut in cuts) { console.log(cut); } will display index,  so really for in is for(const index in cuts) { console.log(cuts[index]) } you'd need to access your arr[index] to actually get the value of the arr at that pos.
+So array has method on the prototype (like .forEach, .map, .filter), but you can create a method and add it to the prototype, like .shuffle.
+would look like, Array.prototype.shuffle () = function () { ..shuffle..}; 
+The for in loop would iterate over all the indicies of the array AS WELL as the new prototype, property or method or anything, as if it were appended to the end of the array.
+so it will show up.
+Demo on https://mootools.net/ console
+var names = ["me", "you"];
+for (name in names) {console.log(names[name])}; //shows each index in the array, including the name of the new method/prototypes
+for (name in names) {console.log(name)};  //shows what each index is mapped to, including the function definition for the named method/prototypes.
+
+
+The for of loop, for any type of data except an object. Best of all the other loops.
+ // for(const cut of cuts) { console.log(cut); } shows the actual value in the array, not the index. break and continue work.
+ //arr.forEach((item)  => { if(item === 'tree') { break; } console.log(item) }; //break will cancel the entire loop, continue will skip that specific iteration.
+
+.entries… see lesson 22.
+
+
+
+the arguments keyword  - if an array is not expecting any arguments, but an arbitrary amount of arguments that are stored in the arguments object inside of the function.
+The for of loop, does not need to know the size of number of indicies in this arguments object to put it to good use. See codepen example.
+Dont need to convert to a true array. Don't forget to declare your const/let/var in your for loop otherwise you'll be over writing it every single time.
+
+Looping over a string - for char of string {console.log(char)
+
+Looping over DOM collections (or nodelists or html collections) without having to convert to true array. They're being changed so that you have .for each and .map and all the array methods that we're used to.
+This is helpful if you want to add an event listener or display all of the elements on the page. When you store some document.querySelectorAll('p') say for the  tag as an example, this will be like a NodeList and contain array methods.
+Can show example in console of any page.
+const ps = document.querySelectorAll('p');
+for (const par of ps) {console.log(par)}
+
+The plain object is not an iterable!
+for const prop of apple.entries())
+
+
+Array methods, 
+Array.from() takes content that is "similar to an array" array-ish like has a length and converts it.
+const trueArray = Array.from(arrayIsh);
+it can take in another argument that is a map function and can manipulate your content
+const trueArray = Array.from(arrayIsh, element => {console.log(element); return element.textContent});
+
+a really good example of this is if youre using the arguments object, but you want to run an array method like map or reduce, you have to convert it to a true array.
+
+Array.of() pass it as many arguments as you want and it will convert the arguments to an array.
+
+Array.find() for finding the actual thing inside the array
+say you have an array of objects, posts and you want a specific one
+const post = posts.find(post => console.log(post.code); if(post.code ==="mycode" {return true;} return false;}
+const post = posts.find(post => post.code ==="mycode" }
+
+Array.findIndex() does the same thing but returns the index where the statement is true.
+
+arr.some(function) will return true if the function returns true at least once
+arr.every(function) will return true if the function returns true everytime.
+
+
+
+
+
+
 ## Arrow Functions in ES6 
 
 ### Arrow functions =>
