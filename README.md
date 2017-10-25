@@ -24,11 +24,18 @@ arr.forEach((item)  => { console.log(item) if(item === 'tree') { break; }};
 ```
 
 #### The for in loop 
-```js for(const cut in cuts) { console.log(cut); }  ```
- will display index,  so really for in is   ```js for(const index in cuts) { console.log(cuts[index]) }``` you'd need to access your arr[index] to actually get the value of the arr at that pos.
+```js
+for(const cut in cuts) { console.log(cut); }  
+```
+ will display index,  so really for in is   
+```js
+  for(const index in cuts) { console.log(cuts[index]) }
+  ```
+you'd need to access your arr[index] to actually get the value of the arr at that pos.
 So array has method on the prototype (like .forEach, .map, .filter), but you can create a method and add it to the prototype, like .shuffle.
 would look like, 
-```js Array.prototype.shuffle () = function () { ..shuffle..};``` 
+```js Array.prototype.shuffle () = function () { ..shuffle..};
+``` 
 The for in loop would iterate over all the indicies of the array AS WELL as the new prototype, property or method or anything, as if it were appended to the end of the array. so it will show up. A lot of libraries modifiy the array prototype. Demo on https://mootools.net/ console
 ```js
 var names = ["me", "you"];
@@ -38,7 +45,10 @@ for (name in names) {console.log(name)};  //shows what each index is mapped to, 
 
 #### The for of loop
 for any type of data except an object. Best of all the other loops.
- ```js for(const cut of cuts) { console.log(cut); } ``` shows the actual value in the array, not the index. break and continue work.
+ ```js 
+ for(const cut of cuts) { console.log(cut); } 
+```
+ shows the actual value in the array, not the index. break and continue work.
 
 We can use desctructuring, and the .entries array method to create an ArrayIterator object, which will allow us to see the index and element we are looping over.
 ```js
